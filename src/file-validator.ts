@@ -1,5 +1,3 @@
-import {Injectable} from '@angular/core';
-
 export interface FileValidator {
     /**
      * Return true if the array of files is acceptable.
@@ -23,7 +21,6 @@ export interface FileValidator {
 /**
  * A file checker that accepts any file.
  */
-@Injectable()
 export class NullFileValidator implements FileValidator {
     validate(files: File[]): boolean {
         return files.length > 0;
@@ -34,7 +31,6 @@ export class NullFileValidator implements FileValidator {
     }
 }
 
-@Injectable()
 export class FileExtensionValidator implements FileValidator {
     constructor(validExtensions?: string[]) {
         this.extensions = validExtensions || [];
@@ -59,7 +55,7 @@ export class FileExtensionValidator implements FileValidator {
         let m = this.extRE.exec(name);
         let ext = m && m[1];
         if (ext) {
-            return this._extensions.some(e => ext == e);
+            return this.extensions.some(e => ext == e);
         } else {
             return false;
         }
