@@ -1,6 +1,6 @@
 {
   "name": "ng-file-input",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Directives for allowing users to upload files",
   "repository": "https://github.com/tmccombs/ng-file-input",
   "typings": "lib/ng-file-input.d.ts",
