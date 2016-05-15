@@ -63,7 +63,7 @@ export class FileInputComponent implements OnInit {
   }
 
   reset() {
-    this.renderer.invokeElementMethod(this.form, 'reset', []);
+    this.renderer.invokeElementMethod(this.form.nativeElement, 'reset', []);
   }
 
   @ViewChild('form')
