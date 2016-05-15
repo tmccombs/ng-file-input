@@ -1,5 +1,5 @@
 import {Attribute, Component, ElementRef, EventEmitter, HostListener, Input,
-        Output, OnInit, ViewChild} from '@angular/core'
+        Output, OnInit, Renderer, ViewChild} from '@angular/core'
 
 import {FileExtensionValidator, FileValidator, NullFileValidator} from './file-validator'
 
@@ -26,7 +26,10 @@ input {
 })
 export class FileInputComponent implements OnInit {
 
-  constructor(@Attribute('accept') accept?: string) {
+  constructor(
+    private renderer: Renderer,
+    @Attribute('accept') accept?: string
+  ) {
     this.accept = accept || '';
   }
 
@@ -60,7 +63,7 @@ export class FileInputComponent implements OnInit {
   }
 
   reset() {
-    this.form.nativeElement.reset();
+    this.renderer.invokeElementMethod(this.form, 'reset', []);
   }
 
   @ViewChild('form')
