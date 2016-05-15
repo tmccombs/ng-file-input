@@ -5,23 +5,24 @@ import {FileExtensionValidator, FileValidator, NullFileValidator} from './file-v
 
 @Component({
     selector: 'file-input, file-select',
-    template: `<form #form>
-      <input type="file" title=" " [accept]="acceptStr" [attr.multiple]="multiple" [attr.disabled]="disabled" />
-    </form>`,
+    template: `
+<ng-content></ng-content>
+<form #form>
+<input type="file" title=" " [accept]="acceptStr" [attr.multiple]="multiple" [attr.disabled]="disabled" />
+</form>`,
     styles: [`
-    :host {
-      display: block;
-      position: relative;
-    }
-    input {
-      position: absolute;
-      opacity: 0;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-    }
-    `]
+:host {
+  display: block;
+  position: relative;
+}
+input {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+} `]
 })
 export class FileInputComponent implements OnInit {
 
