@@ -8,7 +8,7 @@ import {FileExtensionValidator, FileValidator, NullFileValidator} from './file-v
     template: `
 <ng-content></ng-content>
 <form #form>
-<input type="file" title=" " [accept]="acceptStr" [attr.multiple]="multiple" [attr.disabled]="disabled" />
+<input type="file" title=" " [accept]="acceptStr" [attr.multiple]="multiple || null" [attr.disabled]="disabled || null" />
 </form>`,
     styles: [`
 :host {
