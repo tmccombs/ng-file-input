@@ -2,7 +2,7 @@
   "name": "example",
   "version": "0.1.0",
   "description": "example",
-  "repository": "",
+  "repository": "https://github.com/tmccombs/ng-file-input/tree/master/examples/systemjs",
   "main": "index.js",
   "author": "",
   "license": "ISC",
