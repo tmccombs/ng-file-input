@@ -1,7 +1,7 @@
 import {Attribute, Component, ElementRef, EventEmitter, HostListener, Input,
         Output, OnInit, Renderer, ViewChild} from '@angular/core'
 
-import {FileExtensionValidator, FileValidator, NullFileValidator} from './file-validator'
+import {AcceptFileFilter, FileFilter, NullFileFilter} from './file-filter'
 
 @Component({
     selector: 'file-input, file-select',
@@ -36,12 +36,12 @@ export class FileInputComponent implements OnInit {
   @Input() multiple: boolean = false;
   @Input() disabled: boolean = false;
 
-  @Input("fileValidator") validator: FileValidator;
+  @Input("fileFilter") filter: FileFilter;
 
   @Output() fileUpload: EventEmitter<File[]> = new EventEmitter();
 
   @HostListener('change', ['$event.target']) onChange(input: HTMLInputElement) {
-    let files = this.validator.filterFiles(Array.from(input.files));
+    let files = this.filter.filterFiles(Array.from(input.files));
     if (files.length > 0) {
       this.fileUpload.emit(files);
       this.reset();
@@ -49,15 +49,15 @@ export class FileInputComponent implements OnInit {
   }
 
   get acceptStr() {
-    return this.validator.acceptString || this.accept;
+    return this.filter.acceptString || this.accept;
   }
 
   ngOnInit() {
-    if (!this.validator) {
+    if (!this.filter) {
       if (this.accept) {
-        this.validator = new FileExtensionValidator(this.accept.split(','));
+        this.filter = new AcceptFileFilter(this.accept);
       } else {
-        this.validator = new NullFileValidator();
+        this.filter = new NullFileFilter();
       }
     }
   }
